@@ -1,9 +1,11 @@
 import express from "express";
-import { fn } from "../controllers/userController.js"
+import { deleteUser } from "../controllers/userController.js"
+import { verifyToken } from "../middleware/jwt.js";
 
 const router = express.Router()
 
-router.get("/login", fn)
-router.get("/register", fn)
+// ROUTE    /user/:id
+// @DESC    DELETE (DELETE) User in Users Collection
+router.delete("/:id", verifyToken, deleteUser)
 
 export default router
